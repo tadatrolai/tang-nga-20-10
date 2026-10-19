@@ -1,0 +1,1278 @@
+:root {
+  --bg-ivory: #fff9fa;
+  --bg-blush: #fdf1f4;
+  --bg-card: #ffffff;
+  --rose-deep: #9e2248;
+  --rose-primary: #c93b66;
+  --rose-soft: #e87a99;
+  --rose-light: #f9dce4;
+  --gold-accent: #c89d54;
+  --gold-light: #f5ead6;
+  --text-dark: #361923;
+  --text-body: #583541;
+  --text-muted: #845c69;
+  --border-rose: rgba(201, 59, 102, 0.18);
+  --shadow-soft: 0 14px 36px rgba(158, 34, 72, 0.09);
+  --shadow-hover: 0 20px 44px rgba(158, 34, 72, 0.16);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: radial-gradient(circle at top right, #fdeef2 0%, var(--bg-ivory) 45%, #fff5f7 100%);
+  color: var(--text-dark);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+#petals-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.container {
+  width: min(1160px, 92%);
+  margin: 0 auto;
+}
+
+/* ==========================================
+   MÀN HÌNH KHÓA KỶ NIỆM 01/10
+   ========================================== */
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(145deg, #fff6f8 0%, #fce8ee 50%, #f9dde6 100%);
+  transition: opacity 0.7s ease, transform 0.7s ease, visibility 0.7s;
+}
+
+.lock-screen.unlocked {
+  opacity: 0;
+  transform: scale(1.04);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.lock-card {
+  width: min(430px, 100%);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(201, 59, 102, 0.22);
+  border-radius: 28px;
+  padding: 32px 26px 28px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(158, 34, 72, 0.16);
+  position: relative;
+  z-index: 10;
+}
+
+.wax-seal {
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #d94670, #9e2248);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(158, 34, 72, 0.32);
+}
+
+.lock-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  background: var(--rose-light);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.lock-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 5vw, 2.35rem);
+  font-weight: 700;
+  color: var(--rose-deep);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.lock-subtitle {
+  font-size: 0.92rem;
+  color: var(--text-body);
+  margin-bottom: 18px;
+}
+
+.pin-box {
+  background: #fff8fa;
+  border: 1px dashed rgba(201, 59, 102, 0.35);
+  border-radius: 18px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.pin-hint {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-body);
+  margin-bottom: 12px;
+}
+
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--rose-primary);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.pin-dot.filled {
+  background: var(--rose-primary);
+  transform: scale(1.15);
+  box-shadow: 0 0 10px rgba(201, 59, 102, 0.45);
+}
+
+.pin-dots.shake {
+  animation: shakePin 0.4s ease;
+}
+
+@keyframes shakePin {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  75% { transform: translateX(-6px); }
+}
+
+.pin-message {
+  font-size: 0.8rem;
+  color: var(--rose-deep);
+  font-weight: 600;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.key-btn {
+  min-height: 50px;
+  border-radius: 14px;
+  border: 1px solid rgba(201, 59, 102, 0.18);
+  background: #ffffff;
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+  box-shadow: 0 4px 10px rgba(158, 34, 72, 0.05);
+}
+
+.key-btn:hover {
+  background: #fff0f4;
+  border-color: var(--rose-primary);
+}
+
+.key-btn:active {
+  transform: scale(0.96);
+}
+
+.key-action {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  background: #fdf5f7;
+}
+
+.key-unlock {
+  font-size: 0.9rem;
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
+  color: #ffffff;
+  border: none;
+}
+
+.key-unlock:hover {
+  background: linear-gradient(135deg, var(--rose-deep), #7d1837);
+  color: #ffffff;
+}
+
+/* ==========================================
+   HEADER NỔI & NÚT NHẠC
+   ========================================== */
+.floating-header {
+  position: sticky;
+  top: 12px;
+  z-index: 40;
+  padding: 0 16px;
+  margin-top: 12px;
+}
+
+.header-inner {
+  width: min(1160px, 100%);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-rose);
+  border-radius: 999px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 28px rgba(158, 34, 72, 0.08);
+}
+
+.brand-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--rose-deep);
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--rose-primary);
+  box-shadow: 0 0 0 4px rgba(201, 59, 102, 0.2);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-pill {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--rose-deep);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--bg-blush);
+  transition: background 0.2s ease;
+}
+
+.nav-pill:hover {
+  background: var(--rose-light);
+}
+
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(158, 34, 72, 0.25);
+}
+
+.music-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 13px;
+}
+
+.music-bars span {
+  width: 3px;
+  height: 5px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.music-bars.playing span:nth-child(1) {
+  animation: eqBar 0.7s infinite ease-in-out;
+}
+.music-bars.playing span:nth-child(2) {
+  animation: eqBar 0.55s infinite ease-in-out 0.15s;
+}
+.music-bars.playing span:nth-child(3) {
+  animation: eqBar 0.8s infinite ease-in-out 0.3s;
+}
+
+@keyframes eqBar {
+  0%, 100% { height: 4px; }
+  50% { height: 13px; }
+}
+
+/* ==========================================
+   HERO SECTION & BỘ ĐẾM NGÀY CƯỚI
+   ========================================== */
+.hero-section {
+  padding: 48px 0 68px;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fce4ec, #fff0f5);
+  border: 1px solid rgba(201, 59, 102, 0.25);
+  color: var(--rose-deep);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 3.85rem);
+  line-height: 1.12;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+.highlight-script {
+  font-family: var(--font-script);
+  color: var(--rose-primary);
+  font-weight: 700;
+  padding: 0 4px;
+}
+
+.hero-lead {
+  font-size: 1.04rem;
+  color: var(--text-body);
+  margin-bottom: 26px;
+  max-width: 58ch;
+}
+
+.counter-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(201, 59, 102, 0.2);
+  border-radius: 22px;
+  padding: 20px 22px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.counter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.counter-label {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+.counter-total {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--rose-primary);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.counter-item {
+  background: var(--bg-blush);
+  border: 1px solid rgba(201, 59, 102, 0.14);
+  border-radius: 14px;
+  padding: 12px 6px;
+  text-align: center;
+}
+
+.counter-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  color: var(--rose-deep);
+  line-height: 1.1;
+}
+
+.counter-unit {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 10px 24px rgba(158, 34, 72, 0.26);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(158, 34, 72, 0.34);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--rose-deep);
+  border: 1.5px solid rgba(201, 59, 102, 0.32);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-blush);
+}
+
+/* POLAROID STACK IN HERO */
+.polaroid-stack {
+  position: relative;
+  min-height: 470px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid {
+  background: #ffffff;
+  padding: 14px 14px 20px;
+  border-radius: 18px;
+  box-shadow: 0 20px 48px rgba(54, 25, 35, 0.16);
+  border: 1px solid rgba(201, 59, 102, 0.14);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.polaroid:hover {
+  box-shadow: 0 26px 56px rgba(158, 34, 72, 0.24);
+}
+
+.polaroid-img-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f9eef1;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.polaroid:hover img {
+  transform: scale(1.04);
+}
+
+.polaroid figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.2rem;
+  color: var(--rose-deep);
+}
+
+.polaroid-main {
+  width: min(330px, 84%);
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+
+.polaroid-main .polaroid-img-wrap {
+  aspect-ratio: 3 / 4;
+}
+
+.polaroid-sub {
+  position: absolute;
+  right: 0;
+  bottom: -14px;
+  width: min(215px, 56%);
+  transform: rotate(6deg);
+  z-index: 3;
+}
+
+.polaroid-sub .polaroid-img-wrap {
+  aspect-ratio: 3 / 4;
+}
+
+/* ==========================================
+   PHẦN TÔN VINH NÀNG THƠ
+   ========================================== */
+.tribute-section {
+  padding: 64px 0;
+  background: linear-gradient(180deg, rgba(253, 241, 244, 0.7), rgba(255, 249, 250, 0.9));
+  position: relative;
+  z-index: 10;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--rose-primary);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  color: var(--text-body);
+  font-size: 0.98rem;
+}
+
+.tribute-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.tribute-card {
+  background: #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border-rose);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tribute-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tribute-img-box {
+  aspect-ratio: 4 / 3.6;
+  overflow: hidden;
+  background: #f8e8ee;
+}
+
+.tribute-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  transition: transform 0.45s ease;
+}
+
+.tribute-card[data-photo-index="18"] .tribute-img-box img,
+.tribute-card[data-photo-index="19"] .tribute-img-box img {
+  object-position: center 45%;
+}
+
+.tribute-card:hover .tribute-img-box img {
+  transform: scale(1.05);
+}
+
+.tribute-body {
+  padding: 22px;
+  position: relative;
+}
+
+.tribute-number {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: rgba(201, 59, 102, 0.22);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.tribute-body h4 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  color: var(--rose-deep);
+  margin-bottom: 8px;
+}
+
+.tribute-body p {
+  font-size: 0.93rem;
+  color: var(--text-body);
+}
+
+/* ==========================================
+   ALBUM 15 KHOẢNH KHẮC 4 CHƯƠNG
+   ========================================== */
+.story-section {
+  padding: 72px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.chapter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.tab-btn {
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 59, 102, 0.24);
+  background: #ffffff;
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  border-color: var(--rose-primary);
+  color: var(--rose-deep);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--rose-primary), var(--rose-deep));
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 20px rgba(158, 34, 72, 0.24);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+
+.memory-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 14px 14px 18px;
+  border: 1px solid var(--border-rose);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.memory-media {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3.4;
+  background: #f9eaf0;
+  cursor: pointer;
+}
+
+.memory-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 26%;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.memory-media[data-photo-index="10"] img,
+.memory-media[data-photo-index="13"] img {
+  object-position: center 48%;
+}
+
+.memory-card:hover .memory-media img {
+  transform: scale(1.05);
+}
+
+.memory-badge-row {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.memory-chapter-pill,
+.memory-date-pill {
+  font-size: 0.73rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.memory-chapter-pill {
+  background: rgba(158, 34, 72, 0.85);
+  color: #ffffff;
+}
+
+.memory-date-pill {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--rose-deep);
+}
+
+.memory-info {
+  padding: 16px 6px 4px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.memory-title {
+  font-family: var(--font-serif);
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.memory-caption {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  flex: 1;
+  margin-bottom: 14px;
+}
+
+.memory-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed rgba(201, 59, 102, 0.2);
+  padding-top: 10px;
+}
+
+.memory-zoom-btn {
+  background: none;
+  border: none;
+  color: var(--rose-primary);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.memory-like-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 59, 102, 0.22);
+  background: #fff7f9;
+  color: var(--rose-deep);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.memory-like-btn:hover {
+  background: var(--rose-light);
+}
+
+.memory-like-btn:active {
+  transform: scale(1.14);
+}
+
+/* ==========================================
+   PHẦN BỨC THƯ TAY HÀ NỘI - SẦM SƠN
+   ========================================== */
+.letter-section {
+  padding: 56px 0 88px;
+  position: relative;
+  z-index: 10;
+}
+
+.letter-wrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.letter-top-badge {
+  text-align: center;
+  margin-bottom: -16px;
+  position: relative;
+  z-index: 2;
+}
+
+.letter-top-badge span {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold-accent), #b28238);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 8px 22px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(200, 157, 84, 0.32);
+}
+
+.letter-paper {
+  background: linear-gradient(180deg, #fffDFB 0%, #fff7f9 100%);
+  border: 2px solid rgba(200, 157, 84, 0.38);
+  border-radius: 28px;
+  padding: 48px 44px 40px;
+  box-shadow: 0 24px 60px rgba(158, 34, 72, 0.12);
+  position: relative;
+}
+
+.letter-decor-corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: var(--gold-accent);
+  border-style: solid;
+  opacity: 0.55;
+}
+
+.letter-decor-corner.top-left {
+  top: 16px;
+  left: 16px;
+  border-width: 2px 0 0 2px;
+}
+.letter-decor-corner.top-right {
+  top: 16px;
+  right: 16px;
+  border-width: 2px 2px 0 0;
+}
+.letter-decor-corner.bottom-left {
+  bottom: 16px;
+  left: 16px;
+  border-width: 0 0 2px 2px;
+}
+.letter-decor-corner.bottom-right {
+  bottom: 16px;
+  right: 16px;
+  border-width: 0 2px 2px 0;
+}
+
+.letter-greeting {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 4vw, 2.65rem);
+  color: var(--rose-deep);
+  margin-bottom: 20px;
+}
+
+.letter-content p {
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.letter-signature-row {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.letter-date-place {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.letter-signature {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--rose-deep);
+}
+
+.letter-actions {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.btn-flower-surprise {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 14px 30px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #d81b60, #9e2248);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(216, 27, 96, 0.35);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.btn-flower-surprise:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(216, 27, 96, 0.45);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.site-footer {
+  padding: 28px 0 40px;
+  text-align: center;
+  border-top: 1px solid rgba(201, 59, 102, 0.14);
+  background: #fff5f8;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--rose-deep);
+}
+
+.footer-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================
+   LIGHTBOX & MODAL QUÀ TẶNG HOA HỒNG
+   ========================================== */
+.lightbox,
+.flower-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(34, 12, 20, 0.86);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.open,
+.flower-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-stage {
+  max-width: 880px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  max-height: 86vh;
+}
+
+.lightbox-stage img {
+  width: 100%;
+  height: 100%;
+  max-height: 86vh;
+  object-fit: contain;
+  background: #1a0b10;
+}
+
+.lightbox-meta {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fff9fb;
+}
+
+.lightbox-chapter {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--rose-primary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.lightbox-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.lightbox-caption {
+  font-size: 0.96rem;
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.lightbox-prev { left: 18px; }
+.lightbox-next { right: 18px; }
+
+.flower-modal-card {
+  max-width: 500px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 32px 28px;
+  text-align: center;
+  position: relative;
+  border: 2px solid var(--rose-light);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.flower-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-blush);
+  color: var(--rose-deep);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.bouquet-illustration {
+  margin-bottom: 10px;
+  animation: floatBouquet 3s ease-in-out infinite;
+}
+
+@keyframes floatBouquet {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.modal-badge {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rose-primary);
+  background: var(--bg-blush);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--rose-deep);
+  margin-bottom: 10px;
+}
+
+.modal-text {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin-bottom: 18px;
+}
+
+.love-voucher {
+  background: linear-gradient(135deg, #fff6e9, #fdf0f4);
+  border: 1.5px dashed var(--gold-accent);
+  border-radius: 16px;
+  padding: 14px 16px;
+  margin-bottom: 22px;
+}
+
+.voucher-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #9c6f27;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.voucher-body {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ==========================================
+   RESPONSIVE CHO ĐIỆN THOẠI DI ĐỘNG
+   ========================================== */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .polaroid-stack {
+    min-height: 390px;
+  }
+  .tribute-grid,
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lightbox-stage {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .lightbox-stage img {
+    max-height: 56vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    padding: 8px 12px;
+  }
+  .brand-pill span:last-child {
+    font-size: 0.78rem;
+  }
+  .nav-pill {
+    display: none;
+  }
+  .counter-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+  }
+  .counter-item {
+    padding: 10px 4px;
+  }
+  .tribute-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .letter-paper {
+    padding: 34px 22px 30px;
+  }
+  .letter-content p {
+    font-size: 0.98rem;
+    text-align: left;
+  }
+  .polaroid-sub {
+    right: 4px;
+    width: 48%;
+  }
+}

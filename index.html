@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Gửi Vợ Yêu Nguyễn Thị Nga — Món Quà 20/10 Từ Anh Duy Tân</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="locked">
+  <!-- Hiệu ứng cánh hoa hồng rơi toàn trang -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- MÀN HÌNH MỞ KHÓA KỶ NIỆM 01/10 -->
+  <section id="lock-screen" class="lock-screen" aria-label="Màn hình mở khóa kỷ niệm">
+    <div class="lock-card">
+      <div class="wax-seal" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="44" height="44" fill="none">
+          <path d="M32 54C32 54 10 39.2 10 22.5C10 15.6 15.4 10 22.2 10C26.3 10 29.9 12.1 32 15.3C34.1 12.1 37.7 10 41.8 10C48.6 10 54 15.6 54 22.5C54 39.2 32 54 32 54Z" fill="#FFF5F7" stroke="#F8D4DC" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <p class="lock-badge">Hà Nội ➔ Sầm Sơn • 20/10/2026</p>
+      <h1 class="lock-title">Gửi Vợ Yêu Nguyễn Thị Nga</h1>
+      <p class="lock-subtitle">
+        Anh có một món quà nhỏ gói ghém từ Hà Nội gửi về Sầm Sơn tặng Vợ yêu nhân ngày Phụ nữ Việt Nam 20/10.
+      </p>
+
+      <div class="pin-box">
+        <p class="pin-hint">Nhập 4 chữ số ngày và tháng cưới của chúng mình để mở thư</p>
+        <div class="pin-dots" id="pin-dots" aria-live="polite">
+          <span class="pin-dot" data-index="0"></span>
+          <span class="pin-dot" data-index="1"></span>
+          <span class="pin-dot" data-index="2"></span>
+          <span class="pin-dot" data-index="3"></span>
+        </div>
+        <p id="pin-message" class="pin-message">Gợi ý kỷ niệm: Ngày chung đôi 01/10</p>
+      </div>
+
+      <div class="keypad" role="group" aria-label="Bàn phím nhập mật mã">
+        <button type="button" class="key-btn" data-key="1">1</button>
+        <button type="button" class="key-btn" data-key="2">2</button>
+        <button type="button" class="key-btn" data-key="3">3</button>
+        <button type="button" class="key-btn" data-key="4">4</button>
+        <button type="button" class="key-btn" data-key="5">5</button>
+        <button type="button" class="key-btn" data-key="6">6</button>
+        <button type="button" class="key-btn" data-key="7">7</button>
+        <button type="button" class="key-btn" data-key="8">8</button>
+        <button type="button" class="key-btn" data-key="9">9</button>
+        <button type="button" class="key-btn key-action" id="btn-clear-pin">Xóa</button>
+        <button type="button" class="key-btn" data-key="0">0</button>
+        <button type="button" class="key-btn key-unlock" id="btn-quick-unlock" title="Mở nhanh bằng ngày cưới 0110">Mở quà</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- THANH ĐIỀU HƯỚNG & NÚT NHẠC NỔI -->
+  <header class="floating-header" id="floating-header">
+    <div class="header-inner">
+      <div class="brand-pill">
+        <span class="brand-dot"></span>
+        <span>Duy Tân &amp; Vợ yêu Nga • 01/10/2023</span>
+      </div>
+      <div class="header-actions">
+        <a href="#love-letter-section" class="nav-pill">Đọc thư của Anh</a>
+        <button type="button" id="music-toggle" class="music-btn" aria-label="Bật hoặc tắt nhạc nền">
+          <span class="music-bars" id="music-bars">
+            <span></span><span></span><span></span>
+          </span>
+          <span id="music-label">Nhạc Piano</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH CỦA WEBSITE -->
+  <main id="main-content" class="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="hero-tag">Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10</div>
+          <h2 class="hero-heading">
+            Dành Tặng <span class="highlight-script">Vợ Yêu</span><br />
+            Nguyễn Thị Nga
+          </h2>
+          <p class="hero-lead">
+            Dù hôm nay Anh đang ở Hà Nội còn Vợ yêu ở Sầm Sơn, từng khoảnh khắc hạnh phúc của gia đình mình vẫn luôn ở ngay bên cạnh. Cảm ơn Vợ yêu đã bước vào cuộc đời Anh từ ngày cưới <strong>01/10/2023</strong>.
+          </p>
+
+          <!-- ĐỒNG HỒ ĐẾM NGÀY CƯỚI THỜI GIAN THỰC -->
+          <div class="counter-card" aria-label="Đồng hồ đếm thời gian hạnh phúc từ ngày cưới 01/10/2023">
+            <div class="counter-header">
+              <span class="counter-label">Hành trình về chung một nhà kể từ 01/10/2023</span>
+              <span class="counter-total" id="total-days-badge">1.115 ngày bên nhau</span>
+            </div>
+            <div class="counter-grid">
+              <div class="counter-item">
+                <span class="counter-num" id="cnt-years">03</span>
+                <span class="counter-unit">Năm</span>
+              </div>
+              <div class="counter-item">
+                <span class="counter-num" id="cnt-days">19</span>
+                <span class="counter-unit">Ngày</span>
+              </div>
+              <div class="counter-item">
+                <span class="counter-num" id="cnt-hours">00</span>
+                <span class="counter-unit">Giờ</span>
+              </div>
+              <div class="counter-item">
+                <span class="counter-num" id="cnt-minutes">00</span>
+                <span class="counter-unit">Phút</span>
+              </div>
+              <div class="counter-item">
+                <span class="counter-num" id="cnt-seconds">00</span>
+                <span class="counter-unit">Giây</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="#story-section" class="btn-primary">Ngắm lại 15 kỷ niệm của chúng mình</a>
+            <a href="#love-letter-section" class="btn-secondary">Mở bức thư từ Hà Nội</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="polaroid-stack">
+            <figure class="polaroid polaroid-main" data-photo-index="15">
+              <div class="polaroid-img-wrap">
+                <img src="photos/photo_16.jpg" alt="Hai vợ chồng ôm nhau giữa núi rừng mờ sương" loading="eager" />
+              </div>
+              <figcaption>Hẹn ước giữa sương mờ</figcaption>
+            </figure>
+            <figure class="polaroid polaroid-sub" data-photo-index="16">
+              <div class="polaroid-img-wrap">
+                <img src="photos/photo_17.jpg" alt="Vợ yêu Nguyễn Thị Nga dịu dàng tựa vai Anh" loading="eager" />
+              </div>
+              <figcaption>Bình yên giản dị bên Vợ yêu</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN TÔN VINH NÀNG THƠ CỦA ANH -->
+    <section class="tribute-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Người Phụ Nữ Tuyệt Vời Nhất</span>
+          <h3 class="section-title">Ba Điều Ở Vợ Yêu Khiến Anh Luôn Tự Hào</h3>
+          <p class="section-desc">
+            Trong mắt Anh, Vợ yêu không chỉ là nàng thơ xinh đẹp ngày mình mới cưới mà còn là người giữ lửa dịu dàng cho tổ ấm nhỏ của chúng ta.
+          </p>
+        </div>
+
+        <div class="tribute-grid">
+          <article class="tribute-card" data-photo-index="17">
+            <div class="tribute-img-box">
+              <img src="photos/photo_18.jpg" alt="Nụ cười tỏa nắng của Vợ yêu Nguyễn Thị Nga" loading="lazy" />
+            </div>
+            <div class="tribute-body">
+              <span class="tribute-number">01</span>
+              <h4>Nụ Cười Tỏa Nắng</h4>
+              <p>Bất kể ngày thường hay ngày lễ, chỉ cần nhìn thấy nụ cười má lúm rạng rỡ của Vợ yêu là mọi mệt mỏi ngoài kia của Anh đều tan biến hết.</p>
+            </div>
+          </article>
+
+          <article class="tribute-card" data-photo-index="18">
+            <div class="tribute-img-box">
+              <img src="photos/photo_19.jpg" alt="Vợ yêu dịu dàng bế con trai dưới vòm hoa trắng" loading="lazy" />
+            </div>
+            <div class="tribute-body">
+              <span class="tribute-number">02</span>
+              <h4>Sự Dịu Dàng &amp; Tần Tảo</h4>
+              <p>Cảm ơn Vợ yêu đã luôn khéo léo, chu toàn chăm sóc con nhỏ và là hậu phương bình yên nhất để Anh yên tâm công tác nơi xa.</p>
+            </div>
+          </article>
+
+          <article class="tribute-card" data-photo-index="19">
+            <div class="tribute-img-box">
+              <img src="photos/photo_20.jpg" alt="Gia đình nhỏ 3 người dạo biển chiều cùng con trai" loading="lazy" />
+            </div>
+            <div class="tribute-body">
+              <span class="tribute-number">03</span>
+              <h4>Người Mẹ Tuyệt Vời Của Con Trai</h4>
+              <p>Món quà vô giá nhất cuộc đời Anh là có Vợ yêu đồng hành và cùng em đón chào thiên thần nhỏ kháu khỉnh của gia đình mình.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HÀNH TRÌNH 4 CHƯƠNG KỶ NIỆM VỚI 15 BỨC ẢNH -->
+    <section id="story-section" class="story-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Cuốn Album Hạnh Phúc Của Chúng Mình</span>
+          <h3 class="section-title">15 Khoảnh Khắc Đi Cùng Năm Tháng</h3>
+          <p class="section-desc">
+            Chạm vào từng bức ảnh để phóng to và đọc những lời nhắn nhỏ Anh viết riêng cho từng kỷ niệm của hai vợ chồng mình nhé.
+          </p>
+        </div>
+
+        <!-- Bộ lọc Chương -->
+        <div class="chapter-tabs" role="tablist" aria-label="Chọn chương kỷ niệm">
+          <button type="button" class="tab-btn active" data-filter="all">Tất cả 15 kỷ niệm</button>
+          <button type="button" class="tab-btn" data-filter="chapter1">Chương 1: Ngày Chung Đôi</button>
+          <button type="button" class="tab-btn" data-filter="chapter2">Chương 2: Chuyến Đi Thanh Xuân</button>
+          <button type="button" class="tab-btn" data-filter="chapter3">Chương 3: Đêm Hẹn Hò</button>
+          <button type="button" class="tab-btn" data-filter="chapter4">Chương 4: Tổ Ấm Nhỏ</button>
+        </div>
+
+        <!-- Lưới hiển thị 15 bức ảnh -->
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+
+    <!-- BỨC THƯ TAY TỪ HÀ NỘI GỬI VỀ SẦM SƠN -->
+    <section id="love-letter-section" class="letter-section">
+      <div class="container">
+        <div class="letter-wrapper">
+          <div class="letter-top-badge">
+            <span>Thư Gửi Từ Hà Nội Về Sầm Sơn • Ngày 20/10/2026</span>
+          </div>
+
+          <article class="letter-paper">
+            <div class="letter-decor-corner top-left"></div>
+            <div class="letter-decor-corner top-right"></div>
+            <div class="letter-decor-corner bottom-left"></div>
+            <div class="letter-decor-corner bottom-right"></div>
+
+            <h3 class="letter-greeting">Gửi Vợ yêu của Anh,</h3>
+
+            <div class="letter-content" id="letter-content">
+              <p>
+                Ngày 20/10 năm nay, Anh đang ở ngoài Hà Nội không thể về để tự tay ôm Vợ yêu và tặng hoa cho em ở Sầm Sơn. Nhìn lại từng bức ảnh từ ngày mình về chung một nhà 01/10/2023, qua những chuyến đi thanh xuân, những buổi tối kỷ niệm ngày cưới bên ánh nến và hoa hồng, cho đến khi tổ ấm nhỏ của mình có thêm tiếng cười của con trai, Anh luôn thấy mình là người đàn ông may mắn nhất thế gian.
+              </p>
+              <p>
+                Cảm ơn Vợ yêu đã luôn dịu dàng, tần tảo chăm lo cho gia đình và là hậu phương bình yên nhất của Anh. Sáng mai ở nhà sẽ có một bó hoa hồng tươi thắm thay Anh đến bên em trước, còn trang web nhỏ này là nơi Anh gói ghém trọn vẹn tình yêu từ Hà Nội gửi về Sầm Sơn.
+              </p>
+              <p>
+                Chúc Vợ yêu ngày Phụ nữ Việt Nam 20/10 luôn rạng rỡ như nụ cười của em trong từng khung hình, luôn hạnh phúc và bình an. Đợi Anh về bù đắp cho hai mẹ con nhé. Yêu Vợ yêu rất nhiều!
+              </p>
+            </div>
+
+            <div class="letter-signature-row">
+              <div class="letter-date-place">Hà Nội, mùa thu tháng 10/2026</div>
+              <div class="letter-signature">Chồng của em — Duy Tân</div>
+            </div>
+
+            <div class="letter-actions">
+              <button type="button" id="btn-open-flower" class="btn-flower-surprise">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 21s-7-4.35-9.5-8.5C.5 9 2.5 4.5 6.5 4.5c2.3 0 4 1.3 5.5 3.2 1.5-1.9 3.2-3.2 5.5-3.2 4 0 6 4.5 4 8-2.5 4.15-9.5 8.5-9.5 8.5z"/>
+                </svg>
+                <span>Chạm để nhận bó hoa hồng 20/10 từ Anh</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-title">Duy Tân &amp; Nguyễn Thị Nga • Mãi Mãi Một Tình Yêu</p>
+      <p class="footer-sub">Thiết kế riêng tặng Vợ yêu nhân dịp 20/10/2026</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX XEM ẢNH TOÀN MÀN HÌNH -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Xem ảnh phóng to">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Đóng trình xem ảnh">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Ảnh trước">&#10094;</button>
+    <div class="lightbox-stage">
+      <img id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Ảnh kỷ niệm phóng to" />
+      <div class="lightbox-meta">
+        <span id="lightbox-chapter" class="lightbox-chapter"></span>
+        <h4 id="lightbox-title" class="lightbox-title"></h4>
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+      </div>
+    </div>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Ảnh tiếp theo">&#10095;</button>
+  </div>
+
+  <!-- MODAL BÓ HOA HỒNG 20/10 & PHÁO HOA TRÁI TIM -->
+  <div id="flower-modal" class="flower-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Món quà hoa hồng 20/10">
+    <div class="flower-modal-card">
+      <button type="button" class="flower-modal-close" id="flower-modal-close" aria-label="Đóng hộp quà">&times;</button>
+
+      <div class="bouquet-illustration" aria-hidden="true">
+        <svg viewBox="0 0 260 260" width="190" height="190" fill="none">
+          <!-- Giấy gói bó hoa Hàn Quốc -->
+          <path d="M55 125 L130 235 L205 125 L175 95 L85 95 Z" fill="#FCE4EC" stroke="#F48FB1" stroke-width="2"/>
+          <path d="M72 130 L130 225 L188 130 Z" fill="#F8BBD0"/>
+          <!-- Nơ lụa đỏ -->
+          <path d="M110 192 C92 178, 92 212, 126 198 L134 198 C168 212, 168 178, 150 192 Z" fill="#C2185B"/>
+          <circle cx="130" cy="196" r="7" fill="#880E4F"/>
+          <!-- Lá xanh -->
+          <ellipse cx="78" cy="105" rx="18" ry="10" transform="rotate(-30 78 105)" fill="#66BB6A"/>
+          <ellipse cx="182" cy="105" rx="18" ry="10" transform="rotate(30 182 105)" fill="#66BB6A"/>
+          <ellipse cx="102" cy="72" rx="14" ry="8" transform="rotate(-20 102 72)" fill="#81C784"/>
+          <ellipse cx="158" cy="72" rx="14" ry="8" transform="rotate(20 158 72)" fill="#81C784"/>
+          <!-- Những đóa hoa hồng đỏ & hồng phấn -->
+          <circle cx="130" cy="86" r="26" fill="#D81B60"/>
+          <circle cx="130" cy="86" r="17" fill="#F06292"/>
+          <circle cx="130" cy="86" r="9" fill="#FCE4EC"/>
+
+          <circle cx="92" cy="102" r="22" fill="#EC407A"/>
+          <circle cx="92" cy="102" r="13" fill="#F48FB1"/>
+          <circle cx="92" cy="102" r="6" fill="#FFF0F5"/>
+
+          <circle cx="168" cy="102" r="22" fill="#EC407A"/>
+          <circle cx="168" cy="102" r="13" fill="#F48FB1"/>
+          <circle cx="168" cy="102" r="6" fill="#FFF0F5"/>
+
+          <circle cx="110" cy="124" r="21" fill="#C2185B"/>
+          <circle cx="110" cy="124" r="12" fill="#E91E63"/>
+          <circle cx="110" cy="124" r="5" fill="#F8BBD0"/>
+
+          <circle cx="150" cy="124" r="21" fill="#C2185B"/>
+          <circle cx="150" cy="124" r="12" fill="#E91E63"/>
+          <circle cx="150" cy="124" r="5" fill="#F8BBD0"/>
+
+          <!-- Hoa baby trắng -->
+          <circle cx="75" cy="82" r="4" fill="#FFFFFF"/>
+          <circle cx="130" cy="52" r="4.5" fill="#FFFFFF"/>
+          <circle cx="185" cy="82" r="4" fill="#FFFFFF"/>
+          <circle cx="130" cy="140" r="4" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <span class="modal-badge">Happy Vietnamese Women's Day 20/10</span>
+      <h3 class="modal-title">Bó Hoa Hồng Gửi Tặng Vợ Yêu!</h3>
+      <p class="modal-text">
+        Chúc Vợ yêu Nguyễn Thị Nga của Anh một ngày 20/10 ngập tràn niềm vui và hạnh phúc. Sáng mai ở Sầm Sơn sẽ có bó hoa hồng tươi thắm đến tận tay em, và cuối tuần Anh về sẽ bù đắp thật nhiều cho hai mẹ con nhé!
+      </p>
+
+      <div class="love-voucher">
+        <div class="voucher-title">PHIẾU QUÀ TẶNG ĐẶC BIỆT DÀNH RIÊNG CHO VỢ YÊU</div>
+        <div class="voucher-body">
+          Một cái ôm thật chặt, một bữa tối lãng mạn và mọi điều Vợ yêu thích ngay khi Anh từ Hà Nội trở về bên hai mẹ con!
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary" id="btn-close-flower-cta">Yêu Chồng Nhiều Lắm!</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
